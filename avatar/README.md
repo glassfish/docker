@@ -1,4 +1,4 @@
-# Project Avatar on GlassFish 4.0.1 Nightly Build Docker image
+# Project Avatar on GlassFish 4.0.1
 
 This is a Dockerfile for [Project Avatar](http://avatar.java.net) on top of GlassFish Open Source Edition 4.0.1 Nightly Build. 
 
