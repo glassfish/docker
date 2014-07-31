@@ -1,6 +1,6 @@
-# GlassFish 4.0.1 Nightly Build Docker image
+# Project Avatar on GlassFish 4.0.1 Nightly Build Docker image
 
-This is a Dockerfile for [GlassFish Open Source Edition](http://www.glassfish.org) Nightly Build for upcoming version 4.0.1. The purpose of this Docker container is to facilitate the setup of development and integration testing environments for developers.
+This is a Dockerfile for [Project Avatar](http://avatar.java.net) on top of GlassFish Open Source Edition 4.0.1 Nightly Build. 
 
 ## How to Build
 
@@ -8,35 +8,34 @@ To build this Docker container for your own usage, first please download the Web
 
 1. Checkout the GitHub glassfish/docker repository
 
-        git checkout git@github.com:glassfish/docker.git
+        git checkout git@github.com:glassfish/dockerfiles.git
 
 2. Execute the build script
 
-        build.sh
+        avatar/build.sh
 
-## Booting up GlassFish on Docker
+## Booting up Avatar on GlassFish with Docker
 
 Along with the Dockerfile, one script is also provided to help you run GlassFish easily.
 
- * dockGlassFish.sh
+ * dockAvatar.sh
 
-To boot GlassFish, execute
+This script will automagically start default **domain1**. Add argument **-attach** to bind ports 4848 and 8080 to the host server. Log will be supressed, and the container will be daemonized. If you want to run GlassFish with ports binded to host and logs printed on STDOUT, run the following command:
 
-    dockGlassFish.sh
+    docker run -ti -p 4848:4848 -p 8080:8080 glassfish/avatar /opt/glassfish/glassfish4/bin/asadmin start-domain --verbose=true
 
-This script will automagically start default **domain1** and bind ports 4848 and 8080 to the host server. Log will be supressed, and the container will be daemonized. If you want to run GlassFish with ports binded to host, with log files on STDOUT, run the following command:
+## Sample Avatar Application
 
-    docker run -ti -p 4848:4848 -p 8080:8080 oracle/weblogic /opt/glassfish4/bin/asadmin start-domain && tail -f /opt/glassfish4/glassfish/domains/domain1/logs/server.log
+A sample Avatar application is deployed. Go to http://dockercontainer-ip-address:8080/hello. The source code is located at /opt/glassfish/glassfish4/glassfish/bin/hello
 
 ## Deploying Java EE Applications
 
-You can use the GlassFish Maven Plugin or the WLST (WebLogic Scripting Tool) to deploy applications to the remote servers running on Docker containers.
+You can use the GlassFish Maven Plugin or Web Console to deploy applications to the remote servers running on Docker containers.
 
 ## Dockerfile Source
-All source is on the [glassfish/docker GitHub repository](https://github.com/glassfish/docker).
+All source is on the [glassfish/dockerfiles GitHub repository](https://github.com/glassfish/dockerfiles).
 
-If you find any issues, please report through the [GitHub Issues page](https://github.com/glassfish/docker/issues).
+If you find any issues, please report through the [GitHub Issues page](https://github.com/glassfish/dockerfiles/issues).
 
 ## License
-For the scripts and files hosted in the GitHub [glassfish/docker](https://github.com/glassfish/docker/) repository required to build the Docker image are, unless otherwise noted, released under the Common Development and Distribution License (CDDL) 1.0 and GNU Public License 2.0 licenses.
-
+For the scripts and files hosted in the GitHub [glassfish/dockerfiles](https://github.com/glassfish/dockerfiles/) repository required to build the Docker image are, unless otherwise noted, released under the Common Development and Distribution License (CDDL) 1.0 and GNU Public License 2.0 licenses.
