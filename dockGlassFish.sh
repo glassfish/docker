@@ -1,6 +1,6 @@
 #!/bin/sh
 TMP_CID_FILE=tmp/glassfish.cid
-DOCKER_IMAGE_NAME=oracle/glassfish
+DOCKER_IMAGE_NAME=glassfish/javaee
 DOCKER_CONTAINER_NAME=glassfish
 DEFAULT_ADMIN_PORT=4848
 
@@ -20,7 +20,10 @@ then
   fi
 fi
 
-ATTACH_DEFAULT_PORTS="-p 4848:4848 -p 8080:8080"
+if [ ""$1 = "-attach" ]
+then
+  ATTACH_DEFAULT_PORTS="-p 4848:4848 -p 8080:8080"
+fi
 
 # RUN THE DOCKER COMMAND
 docker run -d $ATTACH_DEFAULT_PORTS --cidfile $TMP_CID_FILE --name $DOCKER_CONTAINER_NAME $DOCKER_IMAGE_NAME
