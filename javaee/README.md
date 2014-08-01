@@ -24,7 +24,7 @@ This script will automagically start default **domain1** and bind ports 4848 and
 
 ## Deploying Java EE Applications
 
-You can use the GlassFish Maven Plugin or the WLST (WebLogic Scripting Tool) to deploy applications to the remote servers running on Docker containers.
+You can use the GlassFish Maven Plugin or the Web Console to deploy applications to the remote servers running on Docker containers.
 
 ## Dockerfile Source
 All source is on the [glassfish/dockerfiles GitHub repository](https://github.com/glassfish/dockerfiles).
