@@ -2,15 +2,14 @@
 
 This is a Dockerfile for [GlassFish Open Source Edition](http://www.glassfish.org) for version 4.1. The purpose of this Docker container is to facilitate the setup of development and integration testing environments for developers.
 
-## How to Build
-
-0. Install Oracle Linux 7 Base Docker Image
+## Install Oracle Linux 7 Base Docker Image
 The Dockerfiles contained in this project will build images based on the Oracle Linux 7.0 Base Docker Image. In order to easily install that, run the following script:
 
 	$ install-ol7-docker-image.sh
 
 For more information and documentation, read the [Docker Images from Oracle Linux](http://public-yum.oracle.com/docker-images) page.
 
+## How to build
 
 1. Checkout the GitHub glassfish/dockerfiles repository
 
