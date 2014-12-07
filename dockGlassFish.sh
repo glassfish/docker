@@ -1,9 +1,8 @@
 #!/bin/sh
 TMP_CID_FILE=tmp/glassfish.cid
-DOCKER_IMAGE_NAME=glassfish/javaee
+DOCKER_IMAGE_NAME=glassfish:4.1
 DOCKER_CONTAINER_NAME=glassfish
 DEFAULT_ADMIN_PORT=4848
-
 if [ ! -e tmp ]
 then
   mkdir tmp
@@ -16,7 +15,7 @@ then
   then
     rm -f $TMP_CID_FILE
   else
-    docker rm `cat $TMP_CID_FILE`  > /dev/null 2>&1 && rm $TMP_CID_FILE
+    docker rm `cat $TMP_CID_FILE` > /dev/null 2>&1 && rm $TMP_CID_FILE
   fi
 fi
 
@@ -37,5 +36,5 @@ else
 fi
 
 echo "GlassFish 4 is starting... "
-sleep 5 
+sleep 5
 echo "Open GlassFish Admin Console at http://${ADMIN_IP}:${DEFAULT_ADMIN_PORT}/"
