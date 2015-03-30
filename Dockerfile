@@ -51,7 +51,7 @@ RUN cd /opt/glassfish && curl -O $GLASSFISH_PKG && unzip $PKG_FILE_NAME && rm $P
 RUN chown -R glassfish:glassfish /opt/glassfish*
 
 # Default glassfish ports
-EXPOSE 4848 8080 8181
+EXPOSE 4848 8009 8080 8181
 
 # Set glassfish user in its home/bin by default
 USER glassfish
