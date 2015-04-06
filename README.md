@@ -11,9 +11,9 @@ For more information and documentation, read the [Docker Images from Oracle Linu
 
 ## How to build
 
-1. Checkout the GitHub glassfish/dockerfiles repository
+1. Clone the GitHub glassfish/dockerfiles repository
 
-	$ git checkout git@github.com:glassfish/docker.git glassfish-docker
+	$ git clone git@github.com:glassfish/docker.git glassfish-docker
 	
 	$ cd glassfish-docker
 
