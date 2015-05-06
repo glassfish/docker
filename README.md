@@ -11,9 +11,10 @@ For more information and documentation, read the [Docker Images from Oracle Linu
 
 ## How to build
 
-1. Checkout the GitHub glassfish/dockerfiles repository
+1. Clone the GitHub glassfish/dockerfiles repository
 
-	$ git checkout git@github.com:glassfish/docker.git glassfish-docker
+	$ git clone git@github.com:glassfish/docker.git glassfish-docker
+	
 	$ cd glassfish-docker
 
 2. [Download](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and drop the Oracle JDK 8u25 RPM 64bit file **jdk-8u25-linux-x64.rpm** in this folder
