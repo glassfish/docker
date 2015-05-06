@@ -7,6 +7,6 @@ Running Ozark Samples in Docker Container
 
         # docker run -ti -p 4848:4848 -p 8080:8080 -p 8181:8181 glassfish/ozark
 
-3. Open browser window at (http://localhost:8080/samples)
+3. Open browser window at [](http://localhost:8080/samples)
 
-4. Use (http://localhost:4848/) to log into GF console using admin/ozark.
+4. Use [](http://localhost:4848/) to log into GF console using admin/ozark.
