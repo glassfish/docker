@@ -28,8 +28,8 @@ RUN asadmin --user=admin --passwordfile=/tmp/glassfishpwd change-admin-password 
     asadmin --user=admin stop-domain && \
     rm /tmp/glassfishpwd
 
-# Start GF
-ENTRYPOINT ["asadmin", "start-domain", "-v"]
-
 # Ports being exposed
 EXPOSE 4848 8080 8181
+
+# Start Domain by Default
+CMD ["asadmin"]
