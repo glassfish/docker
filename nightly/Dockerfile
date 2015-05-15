@@ -5,7 +5,7 @@ FROM java:8-jdk
 MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
 RUN wget -O pcurl.sh "https://raw.githubusercontent.com/brunoborges/pcurl/master/pcurl.sh"
-RUN bash pcurl.sh http://dlc-cdn.sun.com/glassfish/4.1/nightly/latest-glassfish.zip && \
+RUN bash pcurl.sh http://download.java.net/glassfish/4.1/nightly/latest-glassfish.zip && \
     unzip -o latest-glassfish.zip && \
     rm -f latest-glassfish.zip && \
     apt-get autoremove -y --purge wget curl 
