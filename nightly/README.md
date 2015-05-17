@@ -13,10 +13,10 @@ This will give you the **asadmin** command line interface. Start the domain with
 
         asadmin> start-domain
 
-If you want to change the password, ensure domain is stopped, then run do:
+If you want to change the password, ensure domain is stopped by calling **stop-domain**, then do:
 
         asadmin> change-admin-password
 
-You can then exit and commit the container to an image with the changed password.
+You can then exit and commit the container with the changed password to a newly named image. You can also use the source [Dockerfile](https://github.com/glassfish/docker/blob/master/nightly/Dockerfile) and extend from there.
 
-To access the GlassFish Console, go to [http://localhost:4848/](http://localhost:4848/) to log into GF console using admin/glassfish.
+To access the GlassFish Console, go to [http://localhost:4848/](http://localhost:4848/) to log into GF console using admin/glassfish. If you did not bind port 4848 to your host, find the container IP and access **http://<container-ip>:4848**.
