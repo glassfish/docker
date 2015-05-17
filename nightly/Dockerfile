@@ -4,23 +4,23 @@ FROM java:8-jdk
 # Maintainer
 MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
-RUN wget -O pcurl.sh "https://raw.githubusercontent.com/brunoborges/pcurl/master/pcurl.sh"
-RUN bash pcurl.sh http://download.java.net/glassfish/4.1/nightly/latest-glassfish.zip && \
-    unzip -o latest-glassfish.zip && \
-    rm -f latest-glassfish.zip && \
-    apt-get autoremove -y --purge wget curl 
-
-# Set environment variables
+# Set environment variables and default password for user 'admin'
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $PATH:/glassfish4/bin
 ENV GLASSFISH_HOME /glassfish4
-
-# Password 
 ENV PASSWORD glassfish
+
+RUN wget -O pcurl.sh "https://raw.githubusercontent.com/brunoborges/pcurl/master/pcurl.sh" && \
+    bash pcurl.sh http://download.java.net/glassfish/4.1/nightly/latest-glassfish.zip && \
+    unzip -o latest-glassfish.zip && \
+    rm -f latest-glassfish.zip && \
+    apt-get autoremove -y --purge wget curl
+
+# Setup the password file
 RUN echo "AS_ADMIN_PASSWORD=" > /tmp/glassfishpwd && \
     echo "AS_ADMIN_NEWPASSWORD=${PASSWORD}" >> /tmp/glassfishpwd 
 
-# Enable DAS
+# Enable DAS, change admin password, and secure admin access
 RUN asadmin --user=admin --passwordfile=/tmp/glassfishpwd change-admin-password --domain_name domain1 && \
     asadmin start-domain && \
     echo "AS_ADMIN_PASSWORD=${PASSWORD}" > /tmp/glassfishpwd && \
@@ -31,5 +31,5 @@ RUN asadmin --user=admin --passwordfile=/tmp/glassfishpwd change-admin-password 
 # Ports being exposed
 EXPOSE 4848 8080 8181
 
-# Start Domain by Default
+# Start asadmin console by default
 CMD ["asadmin"]
