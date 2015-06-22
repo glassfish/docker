@@ -15,8 +15,15 @@ then
   exit
 fi
 
-MD5="$JAVA_PKG_MD5  $JAVA_PKG"
-MD5_CHECK="`md5sum $JAVA_PKG`"
+if [ `uname` != "Darwin" ]
+then
+  MD5="$JAVA_PKG_MD5  $JAVA_PKG"
+  MD5_CHECK="`md5sum $JAVA_PKG`"
+else
+  MD5="$JAVA_PKG_MD5"
+  MD5_CHECK="`md5 -q $JAVA_PKG`"
+fi
+
 
 if [ "$MD5" != "$MD5_CHECK" ]
 then
