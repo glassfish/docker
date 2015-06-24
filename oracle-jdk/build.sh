@@ -1,8 +1,8 @@
 #!/bin/bash
 IMAGE_NAME=glassfish:4.1
-JAVA_VERSION="8u25"
+JAVA_VERSION="8u45"
 JAVA_PKG="jdk-${JAVA_VERSION}-linux-x64.rpm"
-JAVA_PKG_MD5="6a8897b5d92e5850ef3458aa89a5e9d7"
+JAVA_PKG_MD5="50ae04f69743921dd6082dfe978672ad"
 
 # Validate Java Package
 echo "====================="
@@ -15,8 +15,15 @@ then
   exit
 fi
 
-MD5="$JAVA_PKG_MD5  $JAVA_PKG"
-MD5_CHECK="`md5sum $JAVA_PKG`"
+if [ `uname` != "Darwin" ]
+then
+  MD5="$JAVA_PKG_MD5  $JAVA_PKG"
+  MD5_CHECK="`md5sum $JAVA_PKG`"
+else
+  MD5="$JAVA_PKG_MD5"
+  MD5_CHECK="`md5 -q $JAVA_PKG`"
+fi
+
 
 if [ "$MD5" != "$MD5_CHECK" ]
 then
