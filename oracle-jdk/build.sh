@@ -1,8 +1,8 @@
 #!/bin/bash
 IMAGE_NAME=glassfish:4.1
-JAVA_VERSION="8u51"
+JAVA_VERSION="8u60"
 JAVA_PKG="jdk-${JAVA_VERSION}-linux-x64.rpm"
-JAVA_PKG_MD5="e539d132c3d98480217554b8f0da2480"
+JAVA_PKG_MD5="6c9adca7ba0f89fe755653d2a62cdbd3"
 
 # Validate Java Package
 echo "====================="
@@ -39,5 +39,3 @@ docker build -t $IMAGE_NAME .
 
 echo ""
 echo "GlassFish Docker Container is ready to be used. To start, run 'dockGlassFish.sh'"
-
-
