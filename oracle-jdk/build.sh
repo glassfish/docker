@@ -1,5 +1,5 @@
 #!/bin/bash
-IMAGE_NAME=glassfish:4.1
+IMAGE_NAME=glassfish:4.1.1
 JAVA_VERSION="8u60"
 JAVA_PKG="jdk-${JAVA_VERSION}-linux-x64.rpm"
 JAVA_PKG_MD5="6c9adca7ba0f89fe755653d2a62cdbd3"
