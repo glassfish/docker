@@ -4,7 +4,7 @@ FROM alpine:latest
 # Maintainer
 MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
-# Install required packages
+# Install required packages such as OpenJDK 8 and the CA Certificates for SSL support in the JVM
 RUN apk add --update wget unzip ca-certificates && \
     apk add --update --repository http://dl-4.alpinelinux.org/alpine/edge/community/ openjdk8
 
