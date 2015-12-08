@@ -1,34 +1,29 @@
 # Start off with latest Alpine Linux image
-FROM alpine:latest
+FROM glassfish/openjdk 
 
 # Maintainer
 MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
-# Install required packages such as OpenJDK 8 and the CA Certificates for SSL support in the JVM
-RUN apk add --update wget unzip ca-certificates && \
-    apk add --update --repository http://dl-4.alpinelinux.org/alpine/edge/community/ openjdk8
-
 # Set environment variables and default password for user 'admin'
 ENV GLASSFISH_PKG latest-glassfish.zip
 ENV GLASSFISH_URL http://download.oracle.com/glassfish/5.0/nightly/$GLASSFISH_PKG
-ENV JAVA_HOME /usr/lib/jvm/default-jvm
-ENV PATH $PATH:/glassfish4/bin
 ENV GLASSFISH_HOME /glassfish4
+ENV PATH $PATH:$GLASSFISH_HOME/bin
 ENV PASSWORD glassfish
 
-RUN wget --no-check-certificate $GLASSFISH_URL && \
+# Install packages, download and extract GlassFish
+# Setup password file
+# Enable DAS
+RUN apk add --update wget unzip && \
+    wget --no-check-certificate $GLASSFISH_URL && \
     unzip -o $GLASSFISH_PKG && \
     rm -f $GLASSFISH_PKG && \
-    find /usr/share/ca-certificates/mozilla/ -name *.crt -exec keytool -import -trustcacerts -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -noprompt -file {} -alias {} \; && \
-    keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts --storepass changeit && \
-    apk del wget unzip 
-
-# Setup the password file
-RUN echo "AS_ADMIN_PASSWORD=" > /tmp/glassfishpwd && \
-    echo "AS_ADMIN_NEWPASSWORD=${PASSWORD}" >> /tmp/glassfishpwd 
-
-# Enable DAS, change admin password, and secure admin access
-RUN asadmin --user=admin --passwordfile=/tmp/glassfishpwd change-admin-password --domain_name domain1 && \
+    apk del wget unzip && \
+    echo "--- Setup the password file ---" && \
+    echo "AS_ADMIN_PASSWORD=" > /tmp/glassfishpwd && \
+    echo "AS_ADMIN_NEWPASSWORD=${PASSWORD}" >> /tmp/glassfishpwd  && \
+    echo "--- Enable DAS, change admin password, and secure admin access ---" && \
+    asadmin --user=admin --passwordfile=/tmp/glassfishpwd change-admin-password --domain_name domain1 && \
     asadmin start-domain && \
     echo "AS_ADMIN_PASSWORD=${PASSWORD}" > /tmp/glassfishpwd && \
     asadmin --user=admin --passwordfile=/tmp/glassfishpwd enable-secure-admin && \
@@ -38,5 +33,5 @@ RUN asadmin --user=admin --passwordfile=/tmp/glassfishpwd change-admin-password 
 # Ports being exposed
 EXPOSE 4848 8080 8181
 
-# Start asadmin console by default
-CMD ["asadmin"]
+# Start asadmin console and the domain
+CMD ["asadmin", "start-domain", "-v"]
