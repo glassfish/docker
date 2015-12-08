@@ -6,7 +6,7 @@ MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
 # Install required packages
 RUN apk add --update wget unzip && \
-    apk add --update --repository http://dl-4.alpinelinux.org/alpine/edge/community/ openjdk8
+    apk add --repository http://dl-4.alpinelinux.org/alpine/edge/community/ openjdk8
 
 # Set environment variables and default password for user 'admin'
 ENV GLASSFISH_PKG glassfish-ozark.zip
