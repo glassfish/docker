@@ -1,4 +1,4 @@
-Running GlassFish 4.1 Nightly in Docker
+Running GlassFish 5.0 Nightly in Docker
 -----------------------------------------
 Default domain1 entries are:
 
