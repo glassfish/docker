@@ -11,7 +11,7 @@
 #
 # REQUIRED FILES TO BUILD THIS IMAGE
 # ----------------------------------
-# (1) jdk-8u60-linux-x64.rpm
+# (1) jdk-8u66-linux-x64.rpm
 #     Download from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 #
 # HOW TO BUILD THIS IMAGE
@@ -30,11 +30,11 @@ MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
 # Environment variables required for this build (do NOT change)
 # -------------------------------------------------------------
-ENV JAVA_RPM jdk-8u60-linux-x64.rpm
-ENV GLASSFISH_PKG http://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
-ENV PKG_FILE_NAME glassfish-4.1.zip
+ENV JAVA_RPM jdk-8u66-linux-x64.rpm
+ENV GLASSFISH_PKG http://download.java.net/glassfish/4.1.1/release/glassfish-4.1.1.zip
+ENV PKG_FILE_NAME glassfish-4.1.1.zip
 
-# Install and configure Oracle JDK 8u45
+# Install and configure Oracle JDK 8
 # -------------------------------------
 ADD $JAVA_RPM /root/
 RUN rpm -i /root/$JAVA_RPM && rm /root/$JAVA_RPM

@@ -1,6 +1,6 @@
 #!/bin/sh
 TMP_CID_FILE=tmp/glassfish.cid
-DOCKER_IMAGE_NAME=glassfish:4.1
+DOCKER_IMAGE_NAME=glassfish:4.1.1
 DOCKER_CONTAINER_NAME=glassfish
 DEFAULT_ADMIN_PORT=4848
 if [ ! -e tmp ]
