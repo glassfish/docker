@@ -1,20 +1,28 @@
-# Start off with latest GF image that includes JDK 8
-FROM java:8-jdk 
+# Start off with latest Alpine Linux image
+FROM alpine:latest
 
 # Maintainer
 MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
+# Install required packages
+RUN apk add --update wget && \
+    apk add --update unzip && \
+    apk add --update --repository http://dl-4-alpinelinux.org/alpine/edge/community/ ca-certificates && \
+    apk add --update --repository http://dl-4.alpinelinux.org/alpine/edge/community/ openjdk8
+
 # Set environment variables and default password for user 'admin'
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV GLASSFISH_PKG latest-glassfish.zip
+ENV GLASSFISH_URL http://download.oracle.com/glassfish/5.0/nightly/$GLASSFISH_PKG
+ENV JAVA_HOME /usr/lib/jvm/default-jvm
 ENV PATH $PATH:/glassfish4/bin
 ENV GLASSFISH_HOME /glassfish4
 ENV PASSWORD glassfish
 
-RUN wget -O pcurl.sh "https://raw.githubusercontent.com/brunoborges/pcurl/master/pcurl.sh" && \
-    bash pcurl.sh http://download.java.net/glassfish/4.1/nightly/latest-glassfish.zip && \
-    unzip -o latest-glassfish.zip && \
-    rm -f latest-glassfish.zip && \
-    apt-get autoremove -y --purge wget curl
+RUN wget --no-check-certificate $GLASSFISH_URL && \
+    unzip -o $GLASSFISH_PKG && \
+    rm -f $GLASSFISH_PKG && \
+    apk del wget && \
+    apk del unzip 
 
 # Setup the password file
 RUN echo "AS_ADMIN_PASSWORD=" > /tmp/glassfishpwd && \
