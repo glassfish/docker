@@ -5,9 +5,7 @@ FROM alpine:latest
 MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
 # Install required packages
-RUN apk add --update wget && \
-    apk add --update unzip && \
-    apk add --update --repository http://dl-4-alpinelinux.org/alpine/edge/community/ ca-certificates && \
+RUN apk add --update wget unzip ca-certificates && \
     apk add --update --repository http://dl-4.alpinelinux.org/alpine/edge/community/ openjdk8
 
 # Set environment variables and default password for user 'admin'
@@ -21,8 +19,9 @@ ENV PASSWORD glassfish
 RUN wget --no-check-certificate $GLASSFISH_URL && \
     unzip -o $GLASSFISH_PKG && \
     rm -f $GLASSFISH_PKG && \
-    apk del wget && \
-    apk del unzip 
+    find /usr/share/ca-certificates/mozilla/ -name *.crt -exec keytool -import -trustcacerts -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -noprompt -file {} -alias {} \; && \
+    keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts --storepass changeit && \
+    apk del wget unzip 
 
 # Setup the password file
 RUN echo "AS_ADMIN_PASSWORD=" > /tmp/glassfishpwd && \
