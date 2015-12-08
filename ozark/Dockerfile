@@ -1,25 +1,30 @@
-# Start off with latest GF image that includes JDK 8
-FROM java:8-jdk 
+# Start off with latest Alpine Linux image
+FROM alpine:latest
 
 # Maintainer
 MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
-# Set working directory
-WORKDIR /usr/local/glassfish4
+# Install required packages
+RUN apk add --update wget && \
+    apk add --update unzip && \
+    apk add --update --repository http://dl-4-alpinelinux.org/alpine/edge/community/ ca-certificates && \
+    apk add --update --repository http://dl-4.alpinelinux.org/alpine/edge/community/ openjdk8
 
-# Nuke old GF to overlay Ozark's version
-RUN wget https://java.net/projects/ozark/downloads/download/Docker/glassfish-ozark.zip && \
-    unzip -o glassfish-ozark.zip && \
-    rm -f glassfish-ozark.zip
+# Set environment variables and default password for user 'admin'
+ENV GLASSFISH_PKG glassfish-ozark.zip
+ENV GLASSFISH_URL https://java.net/projects/ozark/downloads/download/Docker/glassfish-ozark.zip 
+ENV JAVA_HOME /usr/lib/jvm/default-jvm
+ENV PATH $PATH:/glassfish4/bin
+ENV GLASSFISH_HOME /glassfish4
 
-# Set JAVA_HOME
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-ENV PATH $PATH:/usr/local/glassfish4/bin
-
-# Start GF
-ENTRYPOINT ["asadmin", "start-domain", "-v"]
+RUN wget --no-check-certificate $GLASSFISH_URL && \
+    unzip -o $GLASSFISH_PKG && \
+    rm -f $GLASSFISH_PKG && \
+    apk del wget && \
+    apk del unzip
 
 # Ports being exposed
-EXPOSE 4848
-EXPOSE 8080
-EXPOSE 8181
+EXPOSE 4848 8080 8181
+
+# Start asadmin console by default
+CMD ["asadmin", "start-domain", "-v"]
