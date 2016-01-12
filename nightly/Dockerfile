@@ -6,9 +6,9 @@ MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
 # Set environment variables and default password for user 'admin'
 ENV GLASSFISH_PKG=latest-glassfish.zip \
-    GLASSFISH_URL=http://download.oracle.com/glassfish/5.0/nightly/$GLASSFISH_PKG \
+    GLASSFISH_URL=http://download.oracle.com/glassfish/5.0/nightly/latest-glassfish.zip \
     GLASSFISH_HOME=/glassfish4 \
-    PATH=$PATH:$GLASSFISH_HOME/bin \
+    PATH=$PATH:/glassfish4/bin \
     PASSWORD=glassfish
 
 # Install packages, download and extract GlassFish

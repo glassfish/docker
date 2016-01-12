@@ -8,7 +8,7 @@ MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 ENV GLASSFISH_PKG=glassfish-ozark.zip \
     GLASSFISH_URL=https://java.net/projects/ozark/downloads/download/Docker/glassfish-ozark.zip  \
     GLASSFISH_HOME=/glassfish4 \
-    PATH=$PATH:$GLASSFISH_HOME/bin
+    PATH=$PATH:/glassfish4/bin
 
 # Install required packages (wget, unzip), download/extract GlassFish
 RUN apk add --update wget unzip && \
