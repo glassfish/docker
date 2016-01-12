@@ -5,11 +5,10 @@ FROM glassfish/openjdk
 MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
 # Set environment variables and default password for user 'admin'
-ENV VERSION=4.1.1 \
-    GLASSFISH_PKG=glassfish-$VERSION.zip \
-    GLASSFISH_URL=http://download.oracle.com/glassfish/$VERSION/release/$GLASSFISH_PKG \
+ENV GLASSFISH_PKG=glassfish-4.1.1.zip \
+    GLASSFISH_URL=http://download.oracle.com/glassfish/4.1.1/release/glassfish-4.1.1.zip \
     GLASSFISH_HOME=/glassfish4 \
-    PATH=$PATH:$GLASSFISH_HOME/bin \
+    PATH=$PATH:/glassfish4/bin \
     PASSWORD=glassfish
 
 # Install packages, download and extract GlassFish
