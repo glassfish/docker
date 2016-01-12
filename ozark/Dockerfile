@@ -5,10 +5,10 @@ FROM glassfish/openjdk
 MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
 # Set environment variables and default password for user 'admin'
-ENV GLASSFISH_PKG glassfish-ozark.zip \
-    GLASSFISH_URL https://java.net/projects/ozark/downloads/download/Docker/glassfish-ozark.zip \
-    GLASSFISH_HOME /glassfish4 \
-    PATH $PATH:/glassfish4/bin
+ENV GLASSFISH_PKG=glassfish-ozark.zip \
+    GLASSFISH_URL=https://java.net/projects/ozark/downloads/download/Docker/glassfish-ozark.zip  \
+    GLASSFISH_HOME=/glassfish4 \
+    PATH=$PATH:$GLASSFISH_HOME/bin
 
 # Install required packages (wget, unzip), download/extract GlassFish
 RUN apk add --update wget unzip && \

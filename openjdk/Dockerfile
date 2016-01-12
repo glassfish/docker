@@ -5,8 +5,8 @@ FROM alpine:latest
 MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
 # Set environment variables and default password for user 'admin'
-ENV JAVA_HOME /usr/lib/jvm/default-jvm \
-    PATH $PATH:/usr/lib/jvm/default-jvm/bin
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm \
+    PATH=$PATH:$JAVA_HOME/bin
 
 # Install required packages such as OpenJDK 8 and the CA Certificates for SSL support in the JVM
 # Configure certificates in JDK trust store
