@@ -32,6 +32,6 @@ RUN apk add --update wget unzip && \
 
 # Ports being exposed
 EXPOSE 4848 8080 8181
-
+#ports
 # Start asadmin console and the domain
 CMD ["asadmin", "start-domain", "-v"]
