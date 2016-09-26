@@ -14,9 +14,9 @@ For more information and documentation, read the [Docker Images from Oracle Linu
 	
 	$ cd glassfish-docker
 
-2. [Download](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and drop the Oracle JDK 8u92 RPM 64bit file **jdk-8u92-linux-x64.rpm** in this folder
+2. [Download](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and drop the Oracle JDK 8u102 RPM 64bit file **jdk-8u102-linux-x64.rpm** in this folder
 
-	Linux x64       153 MB        jdk-8u92-linux-x64.rpm
+	Linux x64       158 MB        jdk-8u102-linux-x64.rpm
 
 3. Execute the build script as root
 
