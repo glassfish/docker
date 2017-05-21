@@ -1,8 +1,8 @@
 #!/bin/bash
 IMAGE_NAME=glassfish:4.1.1
-JAVA_VERSION="8u102"
+JAVA_VERSION="8u131"
 JAVA_PKG="jdk-${JAVA_VERSION}-linux-x64.rpm"
-JAVA_PKG_MD5="1ffe998845b594c66db2703dd5f60d88"
+JAVA_PKG_MD5="9024d13ec651d07de450d465f14065a6"
 
 # Validate Java Package
 echo "====================="
